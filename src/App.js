@@ -1,8 +1,7 @@
-import { Navbar, Jumbotron, Button } from "react-bootstrap";
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { render } from "react-dom";
+//import { render } from "react-dom";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import { SingleDatePicker } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
@@ -18,28 +17,6 @@ function validate(formData, errors) {
   return errors;
 }
 
-// const widgets = {
-//   datePickerWidget: datePickerWidget
-// };
-//
-// const datePickerWidget = props => {
-//   return (
-//     // <input
-//     //   type="text"
-//     //   className="custom"
-//     //   value={props.value}
-//     //   required={props.required}
-//     //   onChange={event => props.onChange(event.target.value)}
-//     // />
-//     <SingleDatePicker
-//       date={this.state.date} // momentPropTypes.momentObj or null
-//       onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-//       focused={this.state.focused} // PropTypes.bool
-//       onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-//     />
-//   );
-// };
-
 const schema = {
   title: "Post",
   type: "object",
@@ -51,8 +28,7 @@ const schema = {
       default: "Title"
     },
     msg: { type: "string", title: "Insert text" },
-    datePicker: { type: "string", title: "Date picker" },
-    singleDatePicker: { type: "string" }
+    singleDatePicker: { type: "string", title: "Pick a date" }
   }
 };
 
@@ -77,15 +53,12 @@ const uiSchema = {
   msg: {
     "ui:widget": "textarea"
   },
-  datePicker: { "ui:widget": "alt-datetime" },
   singleDatePicker: {
     "ui:widget": props => {
       return (
         <MyDate
           date={moment(props.value)} // momentPropTypes.momentObj or null
           onDateChange={date => props.onChange(date.format())} // PropTypes.func.isRequired
-          focused={true} // PropTypes.bool
-          onFocusChange={({ focused }) => {}} // PropTypes.func.isRequired
         />
       );
     }
